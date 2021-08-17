@@ -61,13 +61,12 @@ export default {
         }
 
         const onCardEnter = (el, done) => {
-            console.log(el.dataset.index)
             gsap.to(el, {
                 opacity: 1,
                 y: 0,
                 duration: 0.4,
                 onComplete: done,
-                delay: el.dataset.index * 0.2
+                delay: el.dataset.index * 0.06
             })
         }
 

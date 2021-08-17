@@ -5,41 +5,29 @@
         <h1 class="title">Cyber Hunter Clans</h1>
     </transition>
     <router-link :to="{name: 'CreateNew'}" custom v-slot="{href}">
-        <a :href="href" v-if="isVerified" class="createNew">認証済み</a>
-        <a v-else @click="ShowModal" class="createNew">ダメ</a>
+        <div class="p-grid p-jc-center">
+            <a :href="href" v-if="isVerified === 'true'" class="createNew p-col-10 p-md-6 p-lg-3"><div>始める</div></a>
+            <a v-else @click="GotoClanList" class="createNew p-col-10 p-md-6 p-lg-3"><div>始める</div></a>
+        </div>
     </router-link>
-    <Dialog v-model:visible="showModal" :modal="true" :breakpoints="{'960px': '75vw', '640px': '100vw'}" :style="{width: '50vw'}">
-        <template #header>
-            <h3>認証ユーザーではありません</h3>
-        </template>
-        <p>あなたはクラン情報を編集する権限を持っていません。</p>
-        <template #footer>
-            <Button label="OK" icon="pi pi-check" @click="showModal=false" class="customButton" autofocus/>
-        </template>
-    </Dialog>
     <router-view/>
 </div>
 </template>
 
 <script>
 import { ref } from '@vue/reactivity'
-import { onMounted, onUnmounted } from '@vue/runtime-core'
 import {isVerified} from "../composables/VerifyUser"
+import {useRouter} from "vue-router"
 export default {
     setup() {
-        let showModal = ref(false)
+        const router = useRouter()
 
-        const ShowModal = () => {
-            showModal.value = true
+        const GotoClanList = () => {
+            router.push({name: "ClanList"})
         }
-
-        onMounted(()=> {
-            console.log(isVerified.value)
-        })
         
         return {
-            showModal,
-            ShowModal,
+            GotoClanList,
             isVerified,
         }
     },
@@ -58,11 +46,31 @@ export default {
         object-fit: cover;
     }
     .createNew {
+        &:link, &:active, &:visited {
+            color: white;
+        }
+        padding: 25px;
         position: absolute;
         top: 60%;
         left: 50%;
         transform: translate(-50%, -50%);
         font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+        align-items: center;
+        background: #42b983;
+        color: #e8f9e9;
+        border: 3px solid #e8f9e9;
+        transition: all 0.3s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2px;
+        &:hover {
+            color: white;
+            background: #58eba8;
+            border-color: white;
+        }
     }
 }
 .title {

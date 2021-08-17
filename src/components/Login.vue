@@ -39,7 +39,7 @@ export default {
             userIcon.value = ""
             additionalData.value = null
             localStorage.isVerified = false
-            isVerified.value = false
+            isVerified.value = "false"
         }
 
         onMounted(()=>{
