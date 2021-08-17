@@ -1,7 +1,7 @@
 <template>
     <Card>
         <template #header>
-            <img alt="user header" :src="overview.imageUrl">
+            <img alt="user header" :src="overview.imageURL">
         </template>
         <template #title>
             {{overview.name}}

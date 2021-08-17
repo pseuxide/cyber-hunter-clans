@@ -16,10 +16,12 @@
 import { onBeforeMount} from '@vue/runtime-core'
 import firebase from "firebase"
 import Login from "./components/Login.vue"
+import {isVerified} from "./composables/VerifyUser"
 export default {
   components: { Login },
   setup() {
     onBeforeMount(()=> {
+      isVerified.value = localStorage.isVerified
       var firebaseConfig = {
         apiKey: "AIzaSyBRA1eJfHkqoOiNRZimlnrYeWZaVyq0NWs",
         authDomain: "cyber-hunter-clans.firebaseapp.com",

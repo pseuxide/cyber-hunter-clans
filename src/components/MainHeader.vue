@@ -4,7 +4,10 @@
     <transition name="title" appear>
         <h1 class="title">Cyber Hunter Clans</h1>
     </transition>
-    <Button label="クランページを作る" class="createNew p-button-rounded p-button-lg customButton" icon="pi pi-plus" @click="CreateClan"/>
+    <router-link :to="{name: 'CreateNew'}" custom v-slot="{href}">
+        <a :href="href" v-if="isVerified" class="createNew">認証済み</a>
+        <a v-else @click="ShowModal" class="createNew">ダメ</a>
+    </router-link>
     <Dialog v-model:visible="showModal" :modal="true" :breakpoints="{'960px': '75vw', '640px': '100vw'}" :style="{width: '50vw'}">
         <template #header>
             <h3>認証ユーザーではありません</h3>
@@ -14,24 +17,30 @@
             <Button label="OK" icon="pi pi-check" @click="showModal=false" class="customButton" autofocus/>
         </template>
     </Dialog>
+    <router-view/>
 </div>
 </template>
 
 <script>
 import { ref } from '@vue/reactivity'
+import { onMounted, onUnmounted } from '@vue/runtime-core'
+import {isVerified} from "../composables/VerifyUser"
 export default {
     setup() {
         let showModal = ref(false)
-        const CreateClan = () => {
-            if (localStorage.getItem("isVerified") === "false") {
-                showModal.value = true
-                return
-            }
-            console.log("hello world")
+
+        const ShowModal = () => {
+            showModal.value = true
         }
+
+        onMounted(()=> {
+            console.log(isVerified.value)
+        })
+        
         return {
             showModal,
-            CreateClan,
+            ShowModal,
+            isVerified,
         }
     },
 }

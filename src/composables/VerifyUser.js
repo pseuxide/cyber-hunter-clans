@@ -1,10 +1,14 @@
 import { ref } from "@vue/reactivity";
 
+export const isVerified = ref(false)
+
 const VerifyUser = (id) => {
     if (id === 1262641716105850881) {
-        localStorage.setItem("isVerified", true)
+        localStorage.isVerified = true
+        isVerified.value = true
     } else {
-        localStorage.setItem("isVerified", false)
+        localStorage.isVerified = false
+        isVerified.value = false
     }
 }
 

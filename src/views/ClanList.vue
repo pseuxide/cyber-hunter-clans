@@ -19,20 +19,32 @@
 <script>
 import { ref } from '@vue/reactivity'
 import ClanCard from "../components/ClanCard.vue"
-import { watchEffect } from '@vue/runtime-core'
+import { onMounted, watchEffect } from '@vue/runtime-core'
 import gsap from "gsap"
+import firebase from "firebase"
 export default {
     components: {ClanCard},
     setup() {
         const name = ref("")
         let filteredOverviews = ref([])
 
-        const overviews = ref([
-            {name: "Want Revolution", description: "Strongest clan amongest others", imageUrl: "https://i.ytimg.com/vi/o2IJaj3nUmU/maxresdefault.jpg"},
-            {name: "AnR", description: "No data", imageUrl: "https://i.ytimg.com/vi/YMY3-JnLQ4w/maxresdefault.jpg"},
-            {name: "Sol", description: "Founded by Arapi", imageUrl: "https://i.ytimg.com/vi/W44mCO9ztxM/maxresdefault.jpg"},
-            {name: "Last stand", description: "Been led by thicccc rich gorilla.", imageUrl: "https://i.ytimg.com/vi/Qv1N2O3LQdg/maxresdefault.jpg"},
-        ])
+        const overviews = ref([])
+
+        onMounted(()=>{
+            const db = firebase.firestore();
+            db.collection("clans").get().then((querySnapshot)=>{
+                querySnapshot.forEach((doc)=>{
+                    overviews.value.push(doc.data())
+                })
+            })
+        })
+            //db.collection("clans").add({
+            //    name: "alpha",
+            //    description: "doesn't exist",
+            //    imageURL: "https://i.ytimg.com/vi/qqlteyFc76U/maxresdefault.jpg"
+            //}).then((doc) => {
+            //    console.log("added")
+            //})
 
         watchEffect(()=>{
             if (name.value) {
@@ -55,7 +67,7 @@ export default {
                 y: 0,
                 duration: 0.4,
                 onComplete: done,
-                delay: 0.1 + el.dataset.index * 0.2
+                delay: el.dataset.index * 0.2
             })
         }
 

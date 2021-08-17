@@ -15,6 +15,7 @@ import "firebase/auth";
 import { ref } from '@vue/reactivity';
 import { onMounted } from '@vue/runtime-core';
 import VerifyUser from "../composables/VerifyUser"
+import {isVerified} from "../composables/VerifyUser"
 export default {
     setup() {
         const userData = ref(null)
@@ -37,7 +38,8 @@ export default {
             userData.value = null
             userIcon.value = ""
             additionalData.value = null
-            localStorage.setItem("isVerified", false)
+            localStorage.isVerified = false
+            isVerified.value = false
         }
 
         onMounted(()=>{

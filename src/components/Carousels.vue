@@ -5,7 +5,7 @@
     </template>
     <template #item="slotProps">
         <div class="carousel">
-            <img :src="slotProps.data.imageUrl" alt="carousel-clan-header" class="carousel-clan-header"/>
+            <img :src="slotProps.data.imageURL" alt="carousel-clan-header" class="carousel-clan-header"/>
             <h2>{{slotProps.data.name}}</h2>
             <p>{{slotProps.data.description}}</p>
         </div>
@@ -19,10 +19,10 @@ export default {
     props: ["item"],
     setup() {
         const items =  ref([
-            {name: "Want Revolution", description: "Strongest clan amongest others", imageUrl: "https://i.ytimg.com/vi/o2IJaj3nUmU/maxresdefault.jpg"},
-            {name: "AnR", description: "No data", imageUrl: "https://i.ytimg.com/vi/YMY3-JnLQ4w/maxresdefault.jpg"},
-            {name: "Sol", description: "Founded by Arapi", imageUrl: "https://i.ytimg.com/vi/W44mCO9ztxM/maxresdefault.jpg"},
-            {name: "Last stand", description: "Been led by thicccc rich gorilla.", imageUrl: "https://i.ytimg.com/vi/Qv1N2O3LQdg/maxresdefault.jpg"},
+            {name: "Want Revolution", description: "Strongest clan amongest others", imageURL: "https://i.ytimg.com/vi/o2IJaj3nUmU/maxresdefault.jpg"},
+            {name: "AnR", description: "No data", imageURL: "https://i.ytimg.com/vi/YMY3-JnLQ4w/maxresdefault.jpg"},
+            {name: "Sol", description: "Founded by Arapi", imageURL: "https://i.ytimg.com/vi/W44mCO9ztxM/maxresdefault.jpg"},
+            {name: "Last stand", description: "Been led by thicccc rich gorilla.", imageURL: "https://i.ytimg.com/vi/Qv1N2O3LQdg/maxresdefault.jpg"},
         ])
 
         const responsiveOptions = [

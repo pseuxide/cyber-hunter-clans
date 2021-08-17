@@ -19,7 +19,12 @@ const routes = [
     path: "/clanlist",
     name: "ClanList",
     component: () => import("../views/ClanList.vue")
-  }
+  },
+  {
+    path: "/create-new",
+    name: "CreateNew",
+    component: () => import("../views/CreateNew.vue")
+  },
 ]
 
 const router = createRouter({
