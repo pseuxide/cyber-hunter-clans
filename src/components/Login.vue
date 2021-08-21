@@ -16,11 +16,14 @@ import { ref } from '@vue/reactivity';
 import { onMounted } from '@vue/runtime-core';
 import VerifyUser from "../composables/VerifyUser"
 import {isVerified} from "../composables/VerifyUser"
+import { snap } from 'gsap/all';
 export default {
     setup() {
         const userData = ref(null)
         const userIcon = ref("")
         const additionalData = ref(null)
+
+        const db = firebase.firestore()
 
         const LoginWithTwitter = () => {
             const provider = new firebase.auth.TwitterAuthProvider();
@@ -29,7 +32,17 @@ export default {
                 userData.value = result.user
                 userIcon.value = result.user.photoURL
                 additionalData.value = result.additionalUserInfo.profile
-                VerifyUser(additionalData.value.id)
+                localStorage.userID = result.user.uid
+                const usersRef = db.collection("users").doc(result.user.uid)
+                usersRef.get().then(snapshot=>{
+                    if (snapshot.exists === false) {
+                        usersRef.set({
+                            authorized: false
+                        }) //create empty document with named uid as an initialization
+                    }
+                }).then(()=>{
+                    VerifyUser(result.user.uid)
+                })
             })
         }
 
@@ -40,6 +53,7 @@ export default {
             additionalData.value = null
             localStorage.isVerified = false
             isVerified.value = "false"
+            localStorage.userID = ""
         }
 
         onMounted(()=>{

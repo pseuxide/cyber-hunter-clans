@@ -38,13 +38,6 @@ export default {
                 })
             })
         })
-            //db.collection("clans").add({
-            //    name: "alpha",
-            //    description: "doesn't exist",
-            //    imageURL: "https://i.ytimg.com/vi/qqlteyFc76U/maxresdefault.jpg"
-            //}).then((doc) => {
-            //    console.log("added")
-            //})
 
         watchEffect(()=>{
             if (name.value) {

@@ -15,6 +15,7 @@ import InputText from 'primevue/inputtext';
 import Card from 'primevue/card';
 import Textarea from 'primevue/textarea';
 import Editor from 'primevue/editor';
+import Tooltip from 'primevue/tooltip';
 
 const app = createApp(App)
 app.use(PrimeVue)
@@ -26,5 +27,6 @@ app.component("InputText", InputText)
 app.component("Card", Card)
 app.component("Textarea", Textarea)
 app.component("Editor", Editor)
+app.directive("tooltip", Tooltip)
 
 app.use(router).mount('#app')

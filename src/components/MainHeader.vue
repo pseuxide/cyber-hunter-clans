@@ -4,9 +4,9 @@
     <transition name="title" appear>
         <h1 class="title">Cyber Hunter Clans</h1>
     </transition>
-    <router-link :to="{name: 'CreateNew'}" custom v-slot="{href}">
+    <router-link :to="{name: 'CreateNew'}" custom>
         <div class="p-grid p-jc-center">
-            <a :href="href" v-if="isVerified === 'true'" class="createNew p-col-10 p-md-6 p-lg-3"><div>始める</div></a>
+            <a v-if="isVerified === 'true'" @click="GotoCreateNew" class="createNew p-col-10 p-md-6 p-lg-3"><div>始める</div></a>
             <a v-else @click="GotoClanList" class="createNew p-col-10 p-md-6 p-lg-3"><div>始める</div></a>
         </div>
     </router-link>
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
 import {isVerified} from "../composables/VerifyUser"
 import {useRouter} from "vue-router"
 export default {
@@ -25,9 +24,13 @@ export default {
         const GotoClanList = () => {
             router.push({name: "ClanList"})
         }
+        const GotoCreateNew = () => {
+            router.push({name: "CreateNew"})
+        }
         
         return {
             GotoClanList,
+            GotoCreateNew,
             isVerified,
         }
     },
