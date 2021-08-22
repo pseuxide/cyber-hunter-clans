@@ -1,6 +1,7 @@
 <template>
   <div id="nav">
     <router-link :to="{name: 'Home'}">ホーム</router-link> |
+    <router-link :to="{name: 'Dashboard'}">ダッシュボード</router-link> |
     <router-link :to="{name: 'ClanList'}">クランリスト</router-link> |
     <router-link :to="{name: 'About'}">このサイトについて</router-link>
     <Login/>
@@ -16,7 +17,7 @@
 import firebase from "firebase"
 import Login from "./components/Login.vue"
 import {isVerified} from "./composables/VerifyUser"
-import { onBeforeMount } from '@vue/runtime-core'
+import { onBeforeMount} from '@vue/runtime-core'
 export default {
   components: { Login },
   setup() {
@@ -30,7 +31,7 @@ export default {
         messagingSenderId: "671197652558",
         appId: "1:671197652558:web:8413ad70c18e072cd8051f",
         measurementId: "G-QPLKRKEBHZ"
-  };
+    };
       firebase.initializeApp(firebaseConfig)
     })
   },

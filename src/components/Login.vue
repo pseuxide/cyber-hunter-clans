@@ -16,9 +16,10 @@ import { ref } from '@vue/reactivity';
 import { onMounted } from '@vue/runtime-core';
 import VerifyUser from "../composables/VerifyUser"
 import {isVerified} from "../composables/VerifyUser"
-import { snap } from 'gsap/all';
+import { useRouter } from 'vue-router';
 export default {
     setup() {
+        const router = useRouter()
         const userData = ref(null)
         const userIcon = ref("")
         const additionalData = ref(null)
@@ -54,6 +55,7 @@ export default {
             localStorage.isVerified = false
             isVerified.value = "false"
             localStorage.userID = ""
+            router.push({name: "Home"})
         }
 
         onMounted(()=>{

@@ -7,7 +7,6 @@ export const isVerified = ref("false")
 const VerifyUser = (id) => {
     const db = firebase.firestore()
     db.collection("users").doc(id).get().then(snapshot=>{
-        console.log(snapshot.data().authorized)
         if (snapshot.data().authorized === true) {
             localStorage.isVerified = "true"
             isVerified.value = "true"

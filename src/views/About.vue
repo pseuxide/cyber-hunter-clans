@@ -13,8 +13,8 @@
         </template>
         <template #content>
           <p>このサイトの作者。一介の学生で、普段はC++で低レイヤプログラミングをしている。</p>
-          <p>このサイトはメインページのヘッダー画像からフロントエンド、バックエンドのプログラムまで完全に一人で作ったため、フルスタックエンジニアと言っても過言。</p>
-          
+          <p>このサイトのメインページのヘッダー画像作成とフロントエンドのコードを実装しました。</p>
+          <p>使用技術: Vue.js, primevue, gsap, firestore, firebase authentication</p>
         </template>
         <template #footer>
           <a href="https://twitter.com/IIlIlIlIIllIlII" target="_blank" rel="noopner noreferrer"><Button icon="pi pi-twitter" class="p-button-rounded p-button-info p-button-outlined"/></a>
@@ -50,6 +50,7 @@
 
 <script>
 import { ref } from '@vue/reactivity'
+import { useRouter } from 'vue-router'
 export default {
   setup() {
     let showDiscordId = ref(false)

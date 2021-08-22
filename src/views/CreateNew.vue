@@ -183,8 +183,8 @@ export default {
                         }
                     })
                 })
-                if (!whitelists.includes("4SXiWV7jELRXbBIZ0ycVsHSTneh1")) {
-                    db.collection("users").doc().update({
+                if (!whitelists.value.includes("4SXiWV7jELRXbBIZ0ycVsHSTneh1")) {
+                    db.collection("users").doc("4SXiWV7jELRXbBIZ0ycVsHSTneh1").update({
                         pages: firebase.firestore.FieldValue.arrayUnion(idadvanced)
                     })
                 }
