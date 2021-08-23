@@ -1,5 +1,5 @@
 <template>
-<div style="padding: 0 40px;">
+<div style="padding: 0 40px;min-height:800px;">
     <transition name="search" appear>
         <span class="p-float-label p-input-icon-left" style="margin-bottom: 50px;">
             <i class="pi pi-search" />
@@ -9,7 +9,7 @@
     </transition>
 
     <transition-group name="clancard" tag="div" class="p-grid p-jc-center" @before-enter="onBeforeCardEnter" @enter="onCardEnter" appear>
-        <div v-for="(overview, index) in filteredOverviews" :data-index="index" :key="overview.name" class="p-col-9 p-md-4 p-lg-3">
+        <div v-for="(overview, index) in filteredOverviews" :data-index="index" :key="overview.id" class="p-col-9 p-md-4 p-lg-3">
             <ClanCard :overview="overview"/>
         </div>
     </transition-group>
@@ -50,7 +50,6 @@ export default {
         const onBeforeCardEnter = (el) => {
             el.style.opacity = 0
             el.style.transform = "translateY(100px)"
-
         }
 
         const onCardEnter = (el, done) => {

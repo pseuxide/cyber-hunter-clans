@@ -1,7 +1,7 @@
 <template>
     <Card>
         <template #header>
-            <img alt="user header" :src="overview.imageURL">
+            <img alt="user header" :src="overview.eyecatchimageURL">
         </template>
         <template #title>
             {{overview.name}}
@@ -25,5 +25,8 @@ export default {
 </script>
 
 <style>
-
+img {
+    object-fit: cover;
+    height: 200px;
+}
 </style>

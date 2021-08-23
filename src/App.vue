@@ -11,15 +11,17 @@
       <component :is="Component"></component>
     </transition>
   </router-view>
+  <Footer class="footer"/>
 </template>
 
 <script>
 import firebase from "firebase"
 import Login from "./components/Login.vue"
+import Footer from "./components/Footer.vue"
 import {isVerified} from "./composables/VerifyUser"
 import { onBeforeMount} from '@vue/runtime-core'
 export default {
-  components: { Login },
+  components: { Login, Footer },
   setup() {
     isVerified.value = localStorage.isVerified
     onBeforeMount(()=> {
@@ -44,6 +46,10 @@ html {
 }
 body {
   margin: 0;
+  overflow-x: hidden;
+}
+.footer {
+  margin-top: 50px;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

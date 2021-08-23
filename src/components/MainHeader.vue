@@ -6,8 +6,8 @@
     </transition>
     <router-link :to="{name: 'CreateNew'}" custom>
         <div class="p-grid p-jc-center">
-            <a v-if="isVerified === 'true'" @click="GotoCreateNew" class="createNew p-col-10 p-md-6 p-lg-3"><div>始める</div></a>
-            <a v-else @click="GotoClanList" class="createNew p-col-10 p-md-6 p-lg-3"><div>始める</div></a>
+            <a v-if="isVerified === 'true'" @click="GotoCreateNew" class="createNew p-col-10 p-md-6 p-lg-3"><div>新規ページを作る</div></a>
+            <a v-else @click="GotoClanList" class="createNew p-col-10 p-md-6 p-lg-3"><div>クラン一覧</div></a>
         </div>
     </router-link>
     <router-view/>

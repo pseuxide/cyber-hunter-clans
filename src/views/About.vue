@@ -32,7 +32,7 @@
         </template>
       </Card>
     </div>
-  <div class="p-col-8 p-lg-4">
+  <div class="p-col-8 p-lg-4 right-pane">
     <h2>Cyber Hunter Clansとは</h2>
     <p>
       このサイトは、サイバーハンターのクランの情報を誰でも手軽に調べることが出来るように作られたサイトです。
@@ -64,6 +64,22 @@ export default {
 <style lang="scss" scoped>
 a {
   text-decoration: none;
+}
+
+h2 {
+  margin-bottom: 0px;
+}
+
+p {
+    text-align: left;
+}
+
+.right-pane {
+  p {
+    margin-top: 0;
+    margin-bottom: 50px;
+  }
+
 }
 
 </style>

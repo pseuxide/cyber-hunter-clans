@@ -37,7 +37,7 @@
                         <i class="pi pi-image"></i>
                     </span>
                     <span class="p-float-label">
-                        <InputText id="headerimage" type="text" v-model="headerimageurl" v-bind:class="{'p-invalid': bHeaderimageurl}"/>
+                        <InputText id="headerimage" type="text" v-model="headerimageurl" v-bind:class="{'p-invalid': bHeaderimageurl}" v-tooltip="'.pngもしくは.jpgを忘れずに付けてください'"/>
                         <label for="headerimage">ヘッダー画像URL</label>
                     </span>
                 </div>
@@ -48,7 +48,7 @@
                         <i class="pi pi-image"></i>
                     </span>
                     <span class="p-float-label">
-                        <InputText id="eyecatchimage" type="text" v-model="eyecatchimageurl" v-bind:class="{'p-invalid': bEyecatchimageurl}"/>
+                        <InputText id="eyecatchimage" type="text" v-model="eyecatchimageurl" v-bind:class="{'p-invalid': bEyecatchimageurl}" v-tooltip="'.pngもしくは.jpgを忘れずに付けてください'"/>
                         <label for="eyecatchimage">アイキャッチ画像URL</label>
                     </span>
                 </div>
@@ -86,7 +86,7 @@
             <div v-if="whitelists.length">
                 <transition-group tag="ul" name="memberlist" appear>
                     <li v-for="whitelist in whitelists" :key="whitelist" @click="DeleteWhitelists(whitelist)">
-                            <div class="p-col-10"><i class="pi pi-user"></i>{{whitelist}}</div>
+                            <div class="p-col-10">{{whitelist}}</div>
                     </li>
                 </transition-group>
             </div>
