@@ -12,18 +12,22 @@
 </template>
 
 <script>
-import { ref } from '@vue/reactivity'
+import { computed, ref } from '@vue/reactivity'
 import ClanCard from "../components/ClanCard.vue"
 import firebase from "firebase"
 import { onMounted } from '@vue/runtime-core'
+import {useStore} from "vuex"
+import "../store/store"
 export default {
     components: {ClanCard},
     setup() {
         const pageIDs = ref([])
         const pages = ref([])
+        const store = useStore()
+        
         const db = firebase.firestore()
         onMounted(()=> {
-            if (localStorage.userID !== "") {
+            if (localStorage.userID !== "" && !store.state.bDashboardLoaded) {
                 db.collection("users").doc(localStorage.userID).get().then(snapshot=> {
                     pageIDs.value = snapshot.data().pages //fetch ids user has
                 }).then(()=> {
@@ -35,8 +39,13 @@ export default {
                             })
                         })
                     })
+                }).then(()=>{
+                    store.commit("setDashboardData", pages.value)
                 })
+            } else {
+                pages.value = store.state.dashboardData
             }
+            
 
         })
         return {

@@ -2,6 +2,7 @@ import { createApp} from 'vue'
 import App from './App.vue'
 import router from './router'
 import PrimeVue from "primevue/config"
+import store from "./store/store.js"
 
 import "primevue/resources/themes/vela-green/theme.css"
 import "primevue/resources/primevue.min.css"
@@ -19,6 +20,8 @@ import Tooltip from 'primevue/tooltip';
 
 const app = createApp(App)
 app.use(PrimeVue)
+app.use(store)
+
 app.component("Button", Button)
 app.component("Carousel", Carousel)
 app.component("Avatar", Avatar)

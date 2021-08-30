@@ -22,21 +22,31 @@ import ClanCard from "../components/ClanCard.vue"
 import { onMounted, watchEffect } from '@vue/runtime-core'
 import gsap from "gsap"
 import firebase from "firebase"
+import {useStore} from "vuex"
 export default {
     components: {ClanCard},
     setup() {
+        const store = useStore()
         const name = ref("")
         let filteredOverviews = ref([])
 
         const overviews = ref([])
 
         onMounted(()=>{
-            const db = firebase.firestore();
-            db.collection("clans").get().then((querySnapshot)=>{
-                querySnapshot.forEach((doc)=>{
-                    overviews.value.push(doc.data())
+            if (!store.state.bClanlistLoaded) {
+                console.log("full load")
+                const db = firebase.firestore();
+                db.collection("clans").get().then((querySnapshot)=>{
+                    querySnapshot.forEach((doc)=>{
+                        overviews.value.push(doc.data())
+                    })
+                }).then(()=> {
+                    store.commit("setClanlistData", overviews.value)
                 })
-            })
+            } else {
+                console.log("partial load")
+                overviews.value = store.state.clanlistData
+            }
         })
 
         watchEffect(()=>{
